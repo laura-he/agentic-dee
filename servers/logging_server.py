@@ -2,7 +2,7 @@
 MCP Logging Server for Agentic-DEE experiments.
 
 Provides tools for the agent to:
-  - log_experiment : record a completed DEE run with params + metrics
+  - log_experiment  : record a completed DEE run with params + metrics
   - get_experiments : retrieve past runs (optionally filtered)
   - get_summary     : get aggregate stats across all runs
 
@@ -177,9 +177,12 @@ async def call_tool(name: str, arguments: dict[str, Any]) -> list[TextContent]:
         records = _load_all()
 
         # Apply filters
-        if protein := arguments.get("protein"):
+        protein = arguments.get("protein")
+        if protein:
             records = [r for r in records if r["protein"] == protein]
-        if run_type := arguments.get("run_type"):
+            
+        run_type = arguments.get("run_type")
+        if run_type:
             records = [r for r in records if r["run_type"] == run_type]
 
         # Newest first, apply limit
@@ -195,7 +198,8 @@ async def call_tool(name: str, arguments: dict[str, Any]) -> list[TextContent]:
         if not records:
             return [TextContent(type="text", text=json.dumps({"status": "no_data"}))]
 
-        if protein := arguments.get("protein"):
+        protein = arguments.get("protein")
+        if protein:
             records = [r for r in records if r["protein"] == protein]
 
         # Aggregate metrics
