@@ -1,0 +1,6 @@
+name: agenticdee
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+prefix: /hpc/group/bartesaghilab/sh696/miniconda3/envs/agenticdee

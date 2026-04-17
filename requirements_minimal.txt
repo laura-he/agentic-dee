@@ -1,0 +1,12 @@
+anthropic
+mcp
+numpy
+pandas
+matplotlib
+jupyter
+requests
+
+# PyRosetta requires special installation — does not install via plain pip install.
+# Install with:
+#   pip install pyrosetta --find-links https://west.rosettacommons.org/pyrosetta/quarterly/release
+# Academic use only. See https://www.pyrosetta.org for license details.
