@@ -51,6 +51,12 @@ LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
 
 SUPPORTED_PROTEINS = ["1VII", "1PGB", "1L2Y"]
 
+PDB_PATHS = {
+    "1VII": PDB_DIR / "1VII.pdb",
+    "1PGB": PDB_DIR / "1PGB.pdb",
+    "1L2Y": PDB_DIR / "1L2Y_model1.pdb",  # NMR ensemble — use model 1 only
+}
+
 # ---------------------------------------------------------------------------
 # Logging helper (duplicated from logging_server to keep servers independent)
 # ---------------------------------------------------------------------------
@@ -74,7 +80,7 @@ def run_dee_experiment(
     Run a DEE+packing experiment with the given parameter configuration.
     Returns a metrics dict.
     """
-    pdb_path = PDB_DIR / f"{protein}.pdb"
+    pdb_path = PDB_PATHS[protein]
     if not pdb_path.exists():
         raise FileNotFoundError(f"PDB file not found: {pdb_path}")
 
