@@ -286,10 +286,7 @@ Strategy:
   - Look for the Pareto frontier: configurations that are fast AND produce good scores
   - Always provide a clear rationale for each run explaining your hypothesis
 
-Be methodical. Each run takes 20-60 seconds of compute, so make each one count.
-
-NOTE: For 1L2Y (20 residues), avoid ex1=True + ex2=True combinations
-as they cause excessively long runtimes. Prefer ex1 only or no extra sampling."""
+Be methodical. Each run takes 20-60 seconds of compute, so make each one count."""
 
 
 def run_agent(protein: str, n_iterations: int, api_key: str) -> None:
