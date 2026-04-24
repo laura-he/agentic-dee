@@ -69,3 +69,5 @@ mkdir -p agent_logs
 ```
 
 Outputs will be written to the file ```experiments.jsonl``` in the folder ```results```.
+
+Sample results are available in the folder ```results```, in this GitHub repository.
