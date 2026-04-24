@@ -29,12 +29,13 @@ pip install pyrosetta --find-links https://west.rosettacommons.org/pyrosetta/qua
 ```
 **Note: This is for academic use only. See https://www.pyrosetta.org for license details.**
 
-6. To run the agent:
-```bash
-export ANTHROPIC_API_KEY=$(cat ${path_to_api_key})
-python agent/agent.py --protein 1L2Y --iterations 8 2>&1 | tee ${log_path}/${timestamp}.log
-```
-This command sets the environment variable ```ANTHROPIC_API_KEY``` to the path to your API key (```path_to_api_key```) and runs 8 iterations of DEE on the protein ```1L2Y```.
+# API Key Setup
+To obtain an Anthropic API key:
+1. Create or sign in to an Anthropic account: https://platform.claude.com/login?returnTo=%2F%3F
+2. On the home page, click on the button `Get API Key`
+3. Click on the button `+ Create key`
+4. Give your key a name and select `Add`
+5. The API key will be displayed as a long string. Copy this key and store it in a safe location. For instance, you could create a file called `claude_api_key.txt` in the project root containing your Anthropic API key. This file is gitignored and should never be committed.
 
 # Downloading PDB Files
 You can directly download the PDB files for the 3 proteins used in this project (```1PGB```, ```1VII```, ```1L2Y```) from the RCSB PDB.
@@ -51,11 +52,20 @@ done
 
 For storage purposes, the PDB structures are *not* provided in this GitHub repository.
 
-# API Key Setup
-To obtain an Anthropic API key:
-1. Create or sign in to an Anthropic account: https://platform.claude.com/login?returnTo=%2F%3F
-2. On the home page, click on the button `Get API Key`
-3. Click on the button `+ Create key`
-4. Give your key a name and select `Add`
-5. The API key will be displayed as a long string. Copy this key and store it in a safe location. For instance, you could create a file called `claude_api_key.txt` in the project root containing your Anthropic API key. This file is gitignored and should never be committed.
-   
+# Running the Agent
+To run the agent:
+
+```bash
+export ANTHROPIC_API_KEY=$(cat ${path_to_api_key})
+python agent/agent.py --protein 1PGB --iterations 8 2>&1 | tee ${log_path}/${timestamp}.log
+```
+
+This command sets the environment variable ```ANTHROPIC_API_KEY``` to the path to your API key (```path_to_api_key```) and runs 8 iterations of DEE on the protein ```1PGB```.
+
+You can define ```log_path``` to be any output folder. For example:
+
+```bash
+mkdir -p agent_logs
+```
+
+Outputs will be written to the file ```experiments.jsonl``` in the folder ```results```.
